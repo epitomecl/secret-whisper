@@ -32,6 +32,8 @@ export async function init() {
 }
 
 export async function sendPublicMsg(msg) {
+  msg = JSON.stringify(msg)
+
   // TODO: Send a public message
   web3.shh.post({
     symKeyID: channelSymKey,

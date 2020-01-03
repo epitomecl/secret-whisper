@@ -3,11 +3,13 @@ const state = {
   items: [{
     id: 1,
     title: 'new secret message',
+    content: '',
     created_at: '09 Jan 2020'
   },
   {
     id: 2,
     title: 'new secret message2',
+    content: '',
     created_at: '01 Jan 2020'
   }]
 }

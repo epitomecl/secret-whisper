@@ -33,7 +33,7 @@ export default {
   },
   async mounted() {    
     await WhisperService.init()    
-    await WhisperService.sendPublicMsg("testtete")
+    await WhisperService.sendPublicMsg({title: "testtete"})
 
     this.onSubscribe()
   },
@@ -50,29 +50,32 @@ export default {
       WhisperService.subscribePublicMsg((data) => {
         // this.addItem(web3.utils.toAscii(data.payload))
         const content = web3.utils.toAscii(data.payload)
-        console.log(content)
-        this.addContent(content)
+
+        const jsonObj = JSON.parse(content)
+        console.log(jsonObj)
+        this.addContent(jsonObj)
       })
     },
 
-    async addContent (content) {
+    async addContent (obj) {
       const item = {
         id: this.numItems,
-        title: content,
+        title: obj.title,
+        content: obj.content,
         created_at: new Date()
       }
       this.setContent(item)
       this.addItem(item)
     },
 
-    async onCreateItem (item) {
-      // this.addContent(item.title)
-      await WhisperService.sendPublicMsg(item.title)
+    async onCreateItem (item) {      
+      // this.addContent(item.title) 
+      await WhisperService.sendPublicMsg(item)
     },
 
     async onUpdateItem (id, item) {
       // this.addContent(item.title)
-      await WhisperService.sendPublicMsg(item.title)
+      await WhisperService.sendPublicMsg(item)
     }
   }
 }

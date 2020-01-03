@@ -31,6 +31,10 @@
                   </v-col>                  
                 </v-row>
                 <v-row>
+                  <v-textarea solo label="content" v-model="editedItem.content" />
+                </v-row>
+
+                <v-row>
                   <RichEditor />
                 </v-row>
               </v-container>
@@ -101,9 +105,11 @@
       ],
       editedIndex: -1,
       editedItem: {
+        title: '',
         content: ''
       },
       defaultItem: {
+        title: '',
         content: ''
       },
     }),
